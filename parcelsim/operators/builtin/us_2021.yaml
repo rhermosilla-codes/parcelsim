@@ -1,0 +1,127 @@
+# US operator preset — Yang, Landes & Chow (2024)
+# Market shares: Pitney Bowes Parcel Shipping Index 2022
+# Depot locations: publicly available carrier facility lists, NYC 5 boroughs
+# Coordinates are approximate (WGS84)
+
+operators:
+  - id: usps
+    name: US Postal Service
+    market_share: 0.32
+    delivery_threshold: 0.8
+    pickup_threshold: 0.66
+    depots:
+      # NYC has 304 DDUs (Destination Delivery Units); listing major sorting facilities
+      - id: usps_ny_brooklyn
+        lat: 40.6501
+        lon: -73.9496
+      - id: usps_ny_morgan
+        lat: 40.7505
+        lon: -74.0027
+      - id: usps_ny_bronx
+        lat: 40.8317
+        lon: -73.9100
+      - id: usps_ny_queens
+        lat: 40.7282
+        lon: -73.8456
+      - id: usps_ny_staten_island
+        lat: 40.6295
+        lon: -74.0881
+      - id: usps_ny_harlem
+        lat: 40.8116
+        lon: -73.9465
+      - id: usps_ny_midtown
+        lat: 40.7549
+        lon: -73.9936
+      - id: usps_ny_flatbush
+        lat: 40.6501
+        lon: -73.9600
+
+  - id: ups
+    name: United Parcel Service
+    market_share: 0.25
+    delivery_threshold: 0.7
+    pickup_threshold: 0.66
+    depots:
+      # 9 UPS centers in NYC (Yang et al. 2024)
+      - id: ups_ny_maspeth
+        lat: 40.7265
+        lon: -73.8915
+      - id: ups_ny_brooklyn_sunset
+        lat: 40.6459
+        lon: -74.0168
+      - id: ups_ny_bronx_hunts
+        lat: 40.8275
+        lon: -73.9035
+      - id: ups_ny_manhattan_west
+        lat: 40.7549
+        lon: -74.0022
+      - id: ups_ny_manhattan_east
+        lat: 40.7485
+        lon: -73.9756
+      - id: ups_ny_queens_jamaica
+        lat: 40.6916
+        lon: -73.7903
+      - id: ups_ny_staten_island
+        lat: 40.6196
+        lon: -74.1502
+      - id: ups_ny_brooklyn_north
+        lat: 40.7195
+        lon: -73.9446
+      - id: ups_ny_bronx_south
+        lat: 40.8135
+        lon: -73.9317
+
+  - id: fedex
+    name: FedEx
+    market_share: 0.20
+    delivery_threshold: 0.6
+    pickup_threshold: 0.66
+    depots:
+      # 8 FedEx centers in NYC (Yang et al. 2024)
+      - id: fedex_ny_brooklyn_1
+        lat: 40.6570
+        lon: -73.9270
+      - id: fedex_ny_brooklyn_2
+        lat: 40.6340
+        lon: -74.0170
+      - id: fedex_ny_bronx
+        lat: 40.8180
+        lon: -73.9280
+      - id: fedex_ny_manhattan_1
+        lat: 40.7480
+        lon: -73.9960
+      - id: fedex_ny_manhattan_2
+        lat: 40.7600
+        lon: -73.9800
+      - id: fedex_ny_queens_1
+        lat: 40.7180
+        lon: -73.8320
+      - id: fedex_ny_queens_2
+        lat: 40.6780
+        lon: -73.8100
+      - id: fedex_ny_staten_island
+        lat: 40.6280
+        lon: -74.1680
+
+  - id: amazon
+    name: Amazon Logistics
+    market_share: 0.23
+    delivery_threshold: 0.65
+    pickup_threshold: 0.66
+    depots:
+      # 5 Amazon DSPs/delivery stations in NYC (Yang et al. 2024)
+      - id: amazon_ny_maspeth
+        lat: 40.7220
+        lon: -73.8860
+      - id: amazon_ny_brooklyn
+        lat: 40.6390
+        lon: -74.0090
+      - id: amazon_ny_bronx
+        lat: 40.8090
+        lon: -73.9020
+      - id: amazon_ny_manhattan
+        lat: 40.7780
+        lon: -73.9530
+      - id: amazon_ny_staten_island
+        lat: 40.6050
+        lon: -74.1500

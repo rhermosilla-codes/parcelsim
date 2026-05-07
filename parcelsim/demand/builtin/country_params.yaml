@@ -1,0 +1,198 @@
+# Country-level aggregate parcel demand parameters.
+#
+# Fields per country (ISO 3166-1 alpha-2 key):
+#   annual_parcels_per_hh   : average e-commerce parcels delivered per household per year
+#   home_delivery_fraction  : share of parcels delivered to home vs. pickup point / locker
+#   delivery_days_per_year  : working delivery days
+#   source                  : primary data source
+#
+# All values are residential estimates. B2B parcels are excluded.
+# Parameters should be re-calibrated when newer national surveys are available.
+
+# ── Europe ────────────────────────────────────────────────────────────────────
+
+FR:
+  annual_parcels_per_hh: 14.0
+  home_delivery_fraction: 0.47
+  delivery_days_per_year: 260
+  source: "Gardrat (2019); Horl, Briand & Puchinger (2025)"
+
+DE:
+  annual_parcels_per_hh: 30.0
+  home_delivery_fraction: 0.55   # Packstation / locker share is high (~45%)
+  delivery_days_per_year: 250
+  source: "BEVH Jahrbuch (2022); Destatis"
+
+GB:
+  annual_parcels_per_hh: 28.0
+  home_delivery_fraction: 0.80
+  delivery_days_per_year: 250
+  source: "IMRG (2022); Ofcom Postal Market Research (2023)"
+
+NL:
+  annual_parcels_per_hh: 22.0
+  home_delivery_fraction: 0.65
+  delivery_days_per_year: 250
+  source: "PostNL Annual Report (2022)"
+
+BE:
+  annual_parcels_per_hh: 18.0
+  home_delivery_fraction: 0.70
+  delivery_days_per_year: 250
+  source: "bpost Annual Report (2022)"
+
+AT:
+  annual_parcels_per_hh: 22.0
+  home_delivery_fraction: 0.65
+  delivery_days_per_year: 250
+  source: "Austrian Post Annual Report (2022)"
+
+CH:
+  annual_parcels_per_hh: 20.0
+  home_delivery_fraction: 0.72
+  delivery_days_per_year: 250
+  source: "Swiss Post Annual Report (2022)"
+
+ES:
+  annual_parcels_per_hh: 18.0
+  home_delivery_fraction: 0.75
+  delivery_days_per_year: 250
+  source: "CNMC Informe sobre el comercio electronico (2022)"
+
+IT:
+  annual_parcels_per_hh: 15.0
+  home_delivery_fraction: 0.72
+  delivery_days_per_year: 250
+  source: "Osservatorio eCommerce B2c, Politecnico di Milano (2022)"
+
+PT:
+  annual_parcels_per_hh: 12.0
+  home_delivery_fraction: 0.75
+  delivery_days_per_year: 250
+  source: "CTT Correios de Portugal Annual Report (2022)"
+
+SE:
+  annual_parcels_per_hh: 26.0
+  home_delivery_fraction: 0.75
+  delivery_days_per_year: 250
+  source: "PostNord Nordic E-commerce Report (2022)"
+
+DK:
+  annual_parcels_per_hh: 28.0
+  home_delivery_fraction: 0.75
+  delivery_days_per_year: 250
+  source: "PostNord Nordic E-commerce Report (2022)"
+
+"NO":
+  annual_parcels_per_hh: 25.0
+  home_delivery_fraction: 0.78
+  delivery_days_per_year: 250
+  source: "PostNord Nordic E-commerce Report (2022)"
+
+FI:
+  annual_parcels_per_hh: 22.0
+  home_delivery_fraction: 0.72
+  delivery_days_per_year: 250
+  source: "Posti Annual Report (2022)"
+
+PL:
+  annual_parcels_per_hh: 20.0
+  home_delivery_fraction: 0.45   # InPost locker network has very high adoption
+  delivery_days_per_year: 250
+  source: "InPost Annual Report (2022); Poczta Polska"
+
+CZ:
+  annual_parcels_per_hh: 18.0
+  home_delivery_fraction: 0.58
+  delivery_days_per_year: 250
+  source: "Czech Post / APEK (2022)"
+
+HU:
+  annual_parcels_per_hh: 14.0
+  home_delivery_fraction: 0.62
+  delivery_days_per_year: 250
+  source: "Magyar Posta Annual Report (2022)"
+
+RO:
+  annual_parcels_per_hh: 10.0
+  home_delivery_fraction: 0.70
+  delivery_days_per_year: 250
+  source: "ANCOM Romania (2022)"
+
+# ── North America ─────────────────────────────────────────────────────────────
+
+US:
+  annual_parcels_per_hh: 57.0
+  home_delivery_fraction: 0.87
+  delivery_days_per_year: 260
+  source: "USPS Household Diary Study (2021); Statista US e-commerce (2022)"
+
+CA:
+  annual_parcels_per_hh: 20.0
+  home_delivery_fraction: 0.82
+  delivery_days_per_year: 250
+  source: "Canada Post Delivering for Canadians (2022)"
+
+MX:
+  annual_parcels_per_hh: 6.0
+  home_delivery_fraction: 0.80
+  delivery_days_per_year: 250
+  source: "AMVO Estudio de Venta Online en Mexico (2022)"
+
+# ── Asia-Pacific ──────────────────────────────────────────────────────────────
+
+AU:
+  annual_parcels_per_hh: 35.0
+  home_delivery_fraction: 0.85
+  delivery_days_per_year: 250
+  source: "Australia Post eCommerce Industry Report (2022)"
+
+NZ:
+  annual_parcels_per_hh: 30.0
+  home_delivery_fraction: 0.85
+  delivery_days_per_year: 250
+  source: "NZ Post eCommerce Spotlight (2022)"
+
+JP:
+  annual_parcels_per_hh: 25.0
+  home_delivery_fraction: 0.85
+  delivery_days_per_year: 260
+  source: "Japan Post Holdings Annual Report (2022); METI"
+
+KR:
+  annual_parcels_per_hh: 45.0
+  home_delivery_fraction: 0.90
+  delivery_days_per_year: 260
+  source: "Statistics Korea e-commerce survey (2022)"
+
+SG:
+  annual_parcels_per_hh: 40.0
+  home_delivery_fraction: 0.75
+  delivery_days_per_year: 260
+  source: "SingPost Annual Report (2022)"
+
+# ── Latin America ─────────────────────────────────────────────────────────────
+
+BR:
+  annual_parcels_per_hh: 8.0
+  home_delivery_fraction: 0.82
+  delivery_days_per_year: 250
+  source: "ABCOMM (2022)"
+
+AR:
+  annual_parcels_per_hh: 5.0
+  home_delivery_fraction: 0.80
+  delivery_days_per_year: 250
+  source: "CACE Comercio Electronico en Argentina (2022)"
+
+CL:
+  annual_parcels_per_hh: 6.0
+  home_delivery_fraction: 0.80
+  delivery_days_per_year: 250
+  source: "Camara de Comercio de Santiago (2022)"
+
+CO:
+  annual_parcels_per_hh: 5.0
+  home_delivery_fraction: 0.82
+  delivery_days_per_year: 250
+  source: "CCB / Ministerio de Comercio Colombia (2022)"

@@ -1,0 +1,161 @@
+# Lyon metropolitan area operator preset — Hörl, Briand & Puchinger (2025)
+# Market shares from Table 3 (Hörl et al. 2025)
+# Depot coordinates in WGS84 (lon, lat) — approximate from Fig. 2 and public data
+# SIREN registry: https://www.societe.com
+# Year: 2024 baseline scenario
+
+operators:
+  - id: colissimo
+    name: "Colissimo (La Poste)"
+    market_share: 0.4007
+    depots:
+      # La Poste operates 89 depots in the Lyon area; listing key facilities
+      - id: laposte_lyon_perrache
+        lon: 4.8261
+        lat: 45.7461
+      - id: laposte_lyon_part_dieu
+        lon: 4.8594
+        lat: 45.7603
+      - id: laposte_venissieux
+        lon: 4.8916
+        lat: 45.6968
+      - id: laposte_corbas
+        lon: 4.9094
+        lat: 45.6508
+      - id: laposte_bron
+        lon: 4.9125
+        lat: 45.7291
+      - id: laposte_villeurbanne
+        lon: 4.8893
+        lat: 45.7667
+      - id: laposte_caluire
+        lon: 4.8583
+        lat: 45.7944
+      - id: laposte_oullins
+        lon: 4.8131
+        lat: 45.7133
+
+  - id: chronopost
+    name: "Chronopost"
+    market_share: 0.1497
+    depots:
+      - id: chronopost_dardilly
+        lon: 4.7583
+        lat: 45.7956   # NW — "527" hub in Fig. 2
+      - id: chronopost_saint_priest
+        lon: 4.9461
+        lat: 45.6961   # SE — "1314" hub
+      - id: chronopost_venissieux
+        lon: 4.8881
+        lat: 45.7056   # "3009" hub
+      - id: chronopost_meyzieu
+        lon: 5.0056
+        lat: 45.7694
+      - id: chronopost_beynost
+        lon: 5.0294
+        lat: 45.8331
+      - id: chronopost_chasse_sur_rhone
+        lon: 4.8128
+        lat: 45.5994
+
+  - id: ups
+    name: "UPS"
+    market_share: 0.1355
+    depots:
+      - id: ups_chassieu
+        lon: 5.0072
+        lat: 45.7372   # "4596" hub (NE, A43) — largest UPS depot in Fig. 2
+      - id: ups_genay
+        lon: 4.8419
+        lat: 45.8661   # North
+
+  - id: dpd
+    name: "DPD"
+    market_share: 0.0995
+    depots:
+      - id: dpd_corbas
+        lon: 4.9028
+        lat: 45.6428   # "3110" hub (south)
+      - id: dpd_meyzieu
+        lon: 5.0161
+        lat: 45.7761
+      - id: dpd_dardilly
+        lon: 4.7694
+        lat: 45.7889
+
+  - id: dhl
+    name: "DHL"
+    market_share: 0.0895
+    depots:
+      - id: dhl_saint_priest_1
+        lon: 4.9272
+        lat: 45.7011   # "1506" hub (central, large)
+      - id: dhl_chaponost
+        lon: 4.7642
+        lat: 45.7078   # "926" hub (SW)
+      - id: dhl_beynost
+        lon: 5.0461
+        lat: 45.8228
+      - id: dhl_venissieux
+        lon: 4.9008
+        lat: 45.6978
+      - id: dhl_rillieux
+        lon: 4.8906
+        lat: 45.8194
+      - id: dhl_givors
+        lon: 4.7744
+        lat: 45.5889
+      - id: dhl_mions
+        lon: 4.9500
+        lat: 45.6736
+
+  - id: gls
+    name: "GLS"
+    market_share: 0.0693
+    depots:
+      - id: gls_brignais
+        lon: 4.7550
+        lat: 45.6728   # "2157" hub (SW) in Fig. 2
+      - id: gls_meyzieu
+        lon: 5.0283
+        lat: 45.7706
+
+  - id: colis_prive
+    name: "Colis Privé"
+    market_share: 0.0536
+    depots:
+      - id: colisprive_saint_priest
+        lon: 4.9383
+        lat: 45.6889   # "1814" hub (south) in Fig. 2
+      - id: colisprive_rillieux
+        lon: 4.9028
+        lat: 45.8228
+
+  - id: fedex
+    name: "FedEx"
+    market_share: 0.0021
+    depots:
+      - id: fedex_satolas
+        lon: 5.0861
+        lat: 45.7211   # Near Lyon-Saint Exupéry airport
+      - id: fedex_beynost
+        lon: 5.0517
+        lat: 45.8294
+      - id: fedex_saint_priest
+        lon: 4.9639
+        lat: 45.7000
+      - id: fedex_chaponost
+        lon: 4.7711
+        lat: 45.7111
+      - id: fedex_rillieux
+        lon: 4.8894
+        lat: 45.8239
+      - id: fedex_mions
+        lon: 4.9572
+        lat: 45.6711
+      - id: fedex_givors
+        lon: 4.7800
+        lat: 45.5933
+      - id: fedex_venissieux
+        lon: 4.9000
+        lat: 45.6994
