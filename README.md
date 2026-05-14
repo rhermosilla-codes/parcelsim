@@ -11,9 +11,7 @@ Built on top of two peer-reviewed pipelines:
 
 ## Authors
 
-- **Rodrigo Hermosilla P**, PhD in AI & ML | Machine Learning Research Engineer, 
-Intelligent Logistics and Sustainability (ILS) · Center for Transportation & Logistics (CTL) · MIT
-</br>
+- **Rodrigo Hermosilla P**, PhD in AI & ML | Machine Learning Research Engineer, Intelligent Logistics and Sustainability (ILS) · Center for Transportation & Logistics (CTL) · MIT
 - **Juan C. Pina-Pardo**, PhD | Assistant Professor, Pontificia Universidad Católica de Valparaíso | Research Affiliate, Massachusetts Institute of Technology <br/>
 - **Philipp Zinnenlauf**, PhD Student Systems Engineering (CEE) · Center for Transportation & Logistics (CTL) · MIT
 
