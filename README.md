@@ -31,14 +31,16 @@ pip install parcelsim
 pip install "parcelsim[us]"          # + US Census population adapter
 pip install "parcelsim[vrp]"         # + OR-Tools CVRP solver
 pip install "parcelsim[worldpop]"    # + WorldPop raster adapter
-pip install "parcelsim[us,vrp]"      # full install
+pip install "parcelsim[viz]"         # + maps and plots (folium, matplotlib, contextily, branca)
+pip install "parcelsim[us,vrp,viz]"  # full install
 ```
 
-| Extra      | Installs                  | Use case                     |
-|------------|---------------------------|------------------------------|
-| `us`       | `censusdis`               | US Census population adapter |
-| `vrp`      | `ortools`                 | OR-Tools CVRP solver         |
-| `worldpop` | `rasterstats`, `rasterio` | WorldPop raster adapter      |
+| Extra      | Installs                                        | Use case                          |
+|------------|-------------------------------------------------|-----------------------------------|
+| `us`       | `censusdis`                                     | US Census population adapter      |
+| `vrp`      | `ortools`                                       | OR-Tools CVRP solver              |
+| `worldpop` | `rasterio`, `rasterstats`                       | WorldPop raster adapter           |
+| `viz`      | `folium`, `branca`, `matplotlib`, `contextily`  | Interactive maps and static plots |
 
 ---
 
