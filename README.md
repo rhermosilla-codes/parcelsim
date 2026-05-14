@@ -22,22 +22,23 @@ Intelligent Logistics and Sustainability (ILS) · Center for Transportation & Lo
 ## Installation
 
 ```bash
-git clone <repo>
-cd demand_data
-python -m venv .venv && source .venv/bin/activate
-
-pip install -e ".[us,vrp,dev]"      # full install (US Census + VRP solver + dev tools)
-pip install -e ".[dev]"             # minimal (no Census API, no OR-Tools)
+pip install parcelsim
 ```
 
-**Optional extras:**
+**With optional extras:**
 
-| Extra      | Installs                          | Use case                        |
-|------------|-----------------------------------|---------------------------------|
-| `us`       | `censusdataquerier`, `us`         | US Census population adapter    |
-| `vrp`      | `ortools`                         | OR-Tools CVRP solver            |
-| `worldpop` | `rasterstats`, `rasterio`         | WorldPop raster adapter         |
-| `dev`      | `pytest`, `jupyter`, `contextily` | Testing and notebooks           |
+```bash
+pip install "parcelsim[us]"          # + US Census population adapter
+pip install "parcelsim[vrp]"         # + OR-Tools CVRP solver
+pip install "parcelsim[worldpop]"    # + WorldPop raster adapter
+pip install "parcelsim[us,vrp]"      # full install
+```
+
+| Extra      | Installs                  | Use case                     |
+|------------|---------------------------|------------------------------|
+| `us`       | `censusdis`               | US Census population adapter |
+| `vrp`      | `ortools`                 | OR-Tools CVRP solver         |
+| `worldpop` | `rasterstats`, `rasterio` | WorldPop raster adapter      |
 
 ---
 
