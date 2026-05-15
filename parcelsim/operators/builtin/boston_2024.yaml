@@ -1,0 +1,77 @@
+# Boston operator preset — 2024
+# Market shares: Pitney Bowes Parcel Shipping Index 2022 (national, no Boston-specific data)
+# Depot locations: publicly known carrier facilities, Greater Boston area (WGS84)
+
+operators:
+  - id: usps
+    name: US Postal Service
+    market_share: 0.32
+    delivery_threshold: 0.8
+    pickup_threshold: 0.66
+    depots:
+      - id: usps_boston_south_station
+        lat: 42.3520
+        lon: -71.0552
+      - id: usps_boston_cambridge
+        lat: 42.3741
+        lon: -71.1134
+      - id: usps_boston_roxbury
+        lat: 42.3243
+        lon: -71.0804
+      - id: usps_boston_jamaica_plain
+        lat: 42.3117
+        lon: -71.1131
+      - id: usps_boston_east_boston
+        lat: 42.3754
+        lon: -71.0368
+      - id: usps_boston_charlestown
+        lat: 42.3779
+        lon: -71.0602
+
+  - id: ups
+    name: United Parcel Service
+    market_share: 0.25
+    delivery_threshold: 0.7
+    pickup_threshold: 0.66
+    depots:
+      - id: ups_boston_watertown
+        lat: 42.3669
+        lon: -71.1798
+      - id: ups_boston_south
+        lat: 42.3384
+        lon: -71.0532
+      - id: ups_boston_everett
+        lat: 42.4012
+        lon: -71.0589
+
+  - id: fedex
+    name: FedEx
+    market_share: 0.20
+    delivery_threshold: 0.6
+    pickup_threshold: 0.66
+    depots:
+      - id: fedex_boston_dedham
+        lat: 42.2467
+        lon: -71.1785
+      - id: fedex_boston_woburn
+        lat: 42.4829
+        lon: -71.1535
+      - id: fedex_boston_south
+        lat: 42.3340
+        lon: -71.0490
+
+  - id: amazon
+    name: Amazon Logistics
+    market_share: 0.23
+    delivery_threshold: 0.65
+    pickup_threshold: 0.66
+    depots:
+      - id: amazon_boston_dedham
+        lat: 42.2429
+        lon: -71.1796
+      - id: amazon_boston_everett
+        lat: 42.3972
+        lon: -71.0561
+      - id: amazon_boston_revere
+        lat: 42.4145
+        lon: -71.0119
