@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+import requests
 
 from parcelsim.population.base import SyntheticPopulation
 
@@ -31,15 +32,20 @@ _AVG_HH_SIZE: dict[str, float] = {
     "gt100k":   3.1,
 }
 
+_CENSUS_API = "https://api.census.gov/data"
+_TIGER_URL  = "https://www2.census.gov/geo/tiger"
+
 
 class USCensusAdapter:
     """
     Builds a SyntheticPopulation from US Census ACS 5-year data.
 
-    Requires: pip install parcelsim[us]  (censusdis)
+    Uses the Census Bureau REST API directly — no third-party census library needed.
+    A free API key (https://api.census.gov/sign-up.html) is optional but recommended
+    to avoid rate limits.
 
-    Households are allocated at census tract level. If land_use_source="uniform",
-    the household point is placed at the tract centroid (adequate for CA routing).
+    Households are allocated at census tract level with centroid placement
+    (adequate for CA routing).
     """
 
     def __init__(
@@ -59,20 +65,11 @@ class USCensusAdapter:
         self.cache_dir = Path(cache_dir)
 
     def build(self, city: "City") -> SyntheticPopulation:
-        try:
-            import censusdis.data as ced
-            from censusdis.datasets import ACS5
-        except ImportError:
-            raise ImportError(
-                "censusdis is required for the US Census adapter:\n"
-                "  pip install parcelsim[us]"
-            )
-
         cache_path = self._cache_path()
         if cache_path.exists():
             tracts = gpd.read_parquet(cache_path)
         else:
-            tracts = self._download(ced, ACS5)
+            tracts = self._download()
             self.cache_dir.mkdir(parents=True, exist_ok=True)
             tracts.to_parquet(cache_path)
 
@@ -92,26 +89,69 @@ class USCensusAdapter:
             },
         )
 
-    def _download(self, ced, ACS5) -> gpd.GeoDataFrame:
-        download_vars = ["NAME", "B01003_001E", "B11001_001E"] + _ALL_INCOME_VARS
+    def _download(self) -> gpd.GeoDataFrame:
+        state = _state_fips(self.state)
+        vars_str = ",".join(["NAME", "B01003_001E", "B11001_001E"] + _ALL_INCOME_VARS)
 
+        # 1. Demographic data — one request per county
         frames = []
         for county in self.county_fips:
-            df = ced.download(
-                dataset=ACS5,
-                vintage=self.acs_year,
-                download_variables=download_vars,
-                state=_state_fips(self.state),
-                county=county,
-                tract="*",
-                with_geometry=True,
-            )
-            frames.append(df)
+            params: dict = {
+                "get": vars_str,
+                "for": "tract:*",
+                "in": f"state:{state} county:{county}",
+            }
+            if self.census_api_key:
+                params["key"] = self.census_api_key
 
-        tracts = gpd.GeoDataFrame(pd.concat(frames, ignore_index=True))
+            url = f"{_CENSUS_API}/{self.acs_year}/acs/acs5"
+            try:
+                resp = requests.get(url, params=params, timeout=30)
+                resp.raise_for_status()
+                data = resp.json()
+            except Exception as exc:
+                raise RuntimeError(
+                    f"Census API request failed for county {county} "
+                    f"(state {state}, year {self.acs_year}). "
+                    "If the problem persists, register for a free API key at "
+                    "https://api.census.gov/sign-up.html and pass it as "
+                    "census_api_key=... to USCensusAdapter."
+                ) from exc
+
+            headers, rows = data[0], data[1:]
+            frames.append(pd.DataFrame(rows, columns=headers))
+
+        demo = pd.concat(frames, ignore_index=True)
+
+        num_cols = ["B01003_001E", "B11001_001E"] + _ALL_INCOME_VARS
+        for col in num_cols:
+            if col in demo.columns:
+                demo[col] = pd.to_numeric(demo[col], errors="coerce").fillna(0)
+
+        # 2. Tract geometries from TIGER/Line shapefiles
+        tiger_url = (
+            f"zip+{_TIGER_URL}/TIGER{self.acs_year}"
+            f"/TRACT/tl_{self.acs_year}_{state}_tract.zip"
+        )
+        try:
+            shapes = gpd.read_file(tiger_url)
+        except Exception as exc:
+            raise RuntimeError(
+                f"Failed to download TIGER tract shapefile for state {state} "
+                f"year {self.acs_year} from {tiger_url}."
+            ) from exc
+
+        # 3. Merge on GEOID
+        shapes["GEOID"] = shapes["STATEFP"] + shapes["COUNTYFP"] + shapes["TRACTCE"]
+        demo["GEOID"] = demo["state"] + demo["county"] + demo["tract"]
+        tracts = shapes[["GEOID", "geometry"]].merge(demo, on="GEOID")
+
         tracts = tracts.rename(columns={
             "B01003_001E": "population",
             "B11001_001E": "n_households",
+            "state": "STATE",
+            "county": "COUNTY",
+            "tract": "TRACT",
         })
 
         for bracket, vars_ in _INCOME_BRACKET_MAP.items():
@@ -119,7 +159,8 @@ class USCensusAdapter:
             tracts[f"hh_{bracket}"] = tracts[cols].clip(lower=0).sum(axis=1)
 
         tracts["zone_id"] = tracts["STATE"] + tracts["COUNTY"] + tracts["TRACT"]
-        return tracts[tracts["n_households"] > 0].reset_index(drop=True)
+        result = gpd.GeoDataFrame(tracts, geometry="geometry")
+        return result[result["n_households"] > 0].reset_index(drop=True)
 
     def _build_zones(self, tracts: gpd.GeoDataFrame, crs: str) -> gpd.GeoDataFrame:
         zones = tracts[["zone_id", "geometry", "population", "n_households"]].copy()
@@ -168,7 +209,6 @@ class USCensusAdapter:
 
 
 def _state_fips(state: str) -> str:
-    """Accept state abbrev or FIPS code."""
     _abbrev_to_fips = {
         "AL": "01", "AK": "02", "AZ": "04", "AR": "05", "CA": "06",
         "CO": "08", "CT": "09", "DE": "10", "FL": "12", "GA": "13",
