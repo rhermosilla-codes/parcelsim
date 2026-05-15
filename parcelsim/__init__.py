@@ -26,5 +26,5 @@ Quick start (US / NYC):
 
 from parcelsim.city import City
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["City", "__version__"]
