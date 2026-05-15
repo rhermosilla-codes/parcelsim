@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "parcelsim"
-version = "0.1.0"
+version = "0.1.1"
 description = "City-agnostic synthetic last-mile parcel delivery demand generation"
 readme = "README.md"
 requires-python = ">=3.11"
